@@ -20,6 +20,7 @@ substitutions:
   default_system_work_mode: "Zero Export To CT"
   default_solar_sell: "on"
   default_force_off_grid: "off"
+  enable_sync_time: false
 
 esp32:
   board: esp32-s2-saola-1
