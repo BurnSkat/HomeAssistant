@@ -1,7 +1,7 @@
 substitutions:
   name: deyeesp32
   friendly_name: DeyeESP32
-  device_description: "Esphome component for Deye sun-12k-sg04lp3"
+  device_description: "Esphome for Deye sun-12k-sg04lp3"
   modbus_controller_id: sg1334p
   device_type: deye
 
@@ -23,17 +23,18 @@ substitutions:
 
 esp32:
   board: esp32-s2-saola-1
-  cpu_frequency: 240MHz
+# 240Mhz jetzt default
+#  cpu_frequency: 240MHz
   framework:
     type: esp-idf
 
 packages:
   deye_fabian:
-    url: https://github.com/BurnSkat/esphome-deye-inverter
+    url: https://github.com/BurnSkat/HomeAssistant/esphome-deye-inverter-main
     ref: main
     files:
       - path: pv_inverter/deye_hybrid_3p_lv_fabian.yaml
-    refresh: 10min
+    refresh: 12h
 
 wifi:
   manual_ip:
