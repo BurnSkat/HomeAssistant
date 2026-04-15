@@ -1,0 +1,95 @@
+esphome:
+  name: ble5-esp32
+  friendly_name: ble5-ESP32
+
+esp32:
+  board: esp32-s3-devkitc-1
+# 240Mhz now default
+#  cpu_frequency: 240MHz
+  framework:
+    type: esp-idf
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: !secret api_key_ble5-esp32
+
+ota:
+  - platform: esphome
+    password: !secret ota_password_ble5-esp32
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Ble5-Esp32 Fallback Hotspot"
+    password: !secret fallback_password_ble5-esp32
+
+captive_portal:
+
+# esp32_ble:
+#  max_connections: 5
+#  io_capability: keyboard_only
+
+esp32_ble_tracker:
+
+bluetooth_proxy:
+  active: true
+
+# ble_client:
+#  - mac_address: 00:1A:22:12:DC:4B
+#    id: eq3_wohnzimmer
+#  - mac_address: 00:1A:22:11:54:CF
+#    id: eq3_esszimmer
+#    auto_connect: true
+#    on_passkey_request:
+#      then:
+#        - ble_client.passkey_reply:
+#            id: eq3_esszimmer
+#            passkey: 552958
+
+logger:
+
+debug:
+  update_interval: 60s
+
+sensor:
+  - platform: wifi_signal
+    name: "ESP WiFi Signal1"
+    id: esp_wifi_signal1
+    icon: mdi:wifi
+    update_interval: 60s
+    entity_category: diagnostic
+  - platform: uptime
+    name: ESP Uptime1
+    id: esp_uptime1
+    type: seconds
+    icon: mdi:timer-check
+    update_interval: 60s
+    entity_category: diagnostic
+  - platform: debug
+    free:
+      name: ESP Heap Free1
+      id: esp_heap_free1
+      icon: mdi:memory
+      entity_category: diagnostic
+    block:
+      name: ESP Heap Max Block1
+      id: esp_heap_max_block1
+      icon: mdi:memory
+      entity_category: diagnostic
+    loop_time:
+      name: ESP Loop Time1
+      id: esp_loop_time1
+      icon: mdi:reload
+      entity_category: diagnostic
+    cpu_frequency:
+      name: ESP CPU Frequency1
+      id: esp_cpu_frequency1
+      icon: mdi:cpu-32-bit
+      unit_of_measurement: "MHz"
+      filters:
+        - multiply: 0.000001
+      entity_category: diagnostic
