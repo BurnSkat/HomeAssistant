@@ -39,6 +39,8 @@ bluetooth_proxy:
   active: true
 
 # ble_client:
+#  - mac_address: 00:1A:22:11:54:FA
+#    id: eq3_arbeitszimmer
 #  - mac_address: 00:1A:22:12:DC:4B
 #    id: eq3_wohnzimmer
 #  - mac_address: 00:1A:22:11:54:CF
